@@ -20,4 +20,42 @@ const calendar = () => {
   );
 };
 
+export async function getStaticPaths() {
+
+	const generateParams = paths.map((path) => {
+	  const id = String(path);
+	  return { params: { race_id: id } };
+	});
+	return {
+	  paths: generateParams,
+	  fallback: 'blocking', // false or 'blocking'
+	};
+  }
+  
+  export const getStaticProps = async () => {
+	const paths = await fetchRacePaths([
+		RUNNING_RACE,
+		VIRTUAL_RACE,
+		TRAIL_RACE,
+		MOUNTAIN_BIKE_RACE,
+		ROAD_BIKE_RACE,
+		BIKE_TOURS,
+		GRAVEL_BIKE_RACE,
+		TRIATHLON,
+		DUATHLON,
+		WHEELCHAIR,
+	  ]);
+	
+	const race = { ...data.race, url: affiliateURL };
+	return {
+	  props: {
+		race: race,
+	  },
+	  revalidate: 60,
+	};
+  };
+  
+  export default Race;
+  
+
 export default calendar;
