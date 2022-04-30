@@ -1,5 +1,5 @@
 import api from './index';
-import { reduceArray } from '../helpers/array';
+import { reduceDeepArray } from '../helpers/array';
 import { REQUEST_NUMBER } from './types';
 
 export const fetchByCity = (cityName, eventType) => {
@@ -70,12 +70,11 @@ export const fetchForMultipleEvents = async (eventTypes, all = false) => {
   );
   const races = [];
   dataList.forEach((data) => races.push(...data.data.races));
-
   races.sort((raceA, raceB) => {
     return new Date(raceA.next_date) - new Date(raceB.next_date);
   });
 
-  return sortByDate(reduceArray([...new Set(races)]));
+  return sortByDate(reduceDeepArray([...new Set(races)]));
 };
 
 export const fetchByEventAndPage = (eventType, page) => {
@@ -106,7 +105,7 @@ export const fetchForMultipleEventsWithPage = async (
   );
   const races = [];
   dataList.forEach((data) => races.push(...data.data.races));
-  return sortByDate(reduceArray([...new Set(races)]));
+  return sortByDate(reduceDeepArray([...new Set(races)]));
 };
 export const fetchForMultipleEventsWithDistance = async (
   eventTypes,
@@ -117,7 +116,7 @@ export const fetchForMultipleEventsWithDistance = async (
   );
   const races = [];
   dataList.forEach((data) => races.push(...data.data.races));
-  return sortByDate(reduceArray([...new Set(races)]));
+  return sortByDate(reduceDeepArray([...new Set(races)]));
 };
 
 export const sortByDate = (arr) => {

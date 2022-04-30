@@ -22,3 +22,8 @@ export const compareDates = (registrationDate) => {
   const today = new Date();
   return compareAsc(new Date(registrationDate), today);
 };
+
+export const formatToCalendarDate = (time) => {
+  const formatTime = format(new Date(time), 'yyyy-MM-dd');
+  return formatTime;
+};

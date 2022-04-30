@@ -1,6 +1,6 @@
 import { DUATHLON } from '../../../api/types';
 import { bikingEventOptions } from '../../../api/options';
-import { fetchForMultipleEvents } from '../../../api/apiHelpers';
+import { fetchForMultipleEvents } from '../../../api/apiMethods';
 
 import RaceEventsPage from '../../../components/racesPage/RaceEventsPage';
 

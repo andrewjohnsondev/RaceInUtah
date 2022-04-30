@@ -1,61 +1,51 @@
-import FullCalendar from '@fullcalendar/react';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import { useRef } from 'react';
+import { fetchForMultipleEvents } from '../../api/apiMethods';
+import { makeCalendarEvents } from '../../helpers/events';
+import { allEvents } from '../../api/options';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import { useRouter } from 'next/router';
 
-const calendar = () => {
-  const calendarRef = useRef(null);
+const calendar = ({ calendarObjects }) => {
+  console.log(calendarObjects);
+  const router = useRouter();
+
+  const localizer = momentLocalizer(moment);
+
   return (
-    <FullCalendar
-      innerRef={calendarRef}
-      plugins={[dayGridPlugin]}
-      editable
-      selectable
-      events={[
-        { title: 'event 1', date: '2022-05-01', classNames: ['bg-red-400'] },
-        { title: 'event 2', date: '2022-05-02' },
-      ]}
-    />
+    <div className="min-h-[100%] p-2">
+      <Calendar
+        localizer={localizer}
+        events={calendarObjects}
+        startAccessor="start"
+        endAccessor="end"
+        onSelectEvent={(e) => router.push(`/events/race/${e.id}`)}
+      />
+    </div>
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticProps = async () => {
+  const getEventData = () => {
+    const data = allEvents.map(async (e) => {
+      const races = await fetchForMultipleEvents([e.param], true);
+      return {
+        type: e.type,
+        data: races,
+      };
+    });
 
-	const generateParams = paths.map((path) => {
-	  const id = String(path);
-	  return { params: { race_id: id } };
-	});
-	return {
-	  paths: generateParams,
-	  fallback: 'blocking', // false or 'blocking'
-	};
-  }
-  
-  export const getStaticProps = async () => {
-	const paths = await fetchRacePaths([
-		RUNNING_RACE,
-		VIRTUAL_RACE,
-		TRAIL_RACE,
-		MOUNTAIN_BIKE_RACE,
-		ROAD_BIKE_RACE,
-		BIKE_TOURS,
-		GRAVEL_BIKE_RACE,
-		TRIATHLON,
-		DUATHLON,
-		WHEELCHAIR,
-	  ]);
-	
-	const race = { ...data.race, url: affiliateURL };
-	return {
-	  props: {
-		race: race,
-	  },
-	  revalidate: 60,
-	};
+    return Promise.all(data);
   };
-  
-  export default Race;
-  
+
+  const getRaceEvents = await getEventData();
+  const calendarObjects = await makeCalendarEvents(getRaceEvents);
+
+  return {
+    props: {
+      calendarObjects,
+    },
+    revalidate: 60,
+  };
+};
 
 export default calendar;

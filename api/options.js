@@ -7,6 +7,9 @@ import {
   MOUNTAIN_BIKE_RACE,
   GRAVEL_BIKE_RACE,
   BIKE_TOURS,
+  TRIATHLON,
+  DUATHLON,
+  WHEELCHAIR,
 } from './types';
 
 export const runningRaceDistanceOptions = [
@@ -35,4 +38,17 @@ export const bikingEventOptions = [
   { name: 'Mountain Bike Race', value: MOUNTAIN_BIKE_RACE },
   { name: 'Gravel Bike Race', value: GRAVEL_BIKE_RACE },
   { name: 'Bike Tours', value: BIKE_TOURS },
+];
+
+export const allEvents = [
+  { type: 'run', param: RUNNING_RACE },
+  { type: 'trailRun', param: TRAIL_RACE },
+  { type: 'virtualRun', param: VIRTUAL_RACE },
+  { type: 'roadBike', param: ROAD_BIKE_RACE },
+  { type: 'bikeTours', param: BIKE_TOURS },
+  { type: 'gravelBike', param: GRAVEL_BIKE_RACE },
+  { type: 'mountainBike', param: MOUNTAIN_BIKE_RACE },
+  { type: 'triathlon', param: TRIATHLON },
+  { type: 'duathlon', param: DUATHLON },
+  { type: 'wheelchair', param: WHEELCHAIR },
 ];

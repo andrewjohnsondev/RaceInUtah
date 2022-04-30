@@ -39,7 +39,12 @@ function NavLink({ text, href }) {
 
   const renderModal = () => {
     if (text === 'Events') {
-      return <NavModal isSecondaryNavOpen={isSecondaryNavOpen} />;
+      return (
+        <NavModal
+          setIsSecondaryNavOpen={setIsSecondaryNavOpen}
+          isSecondaryNavOpen={isSecondaryNavOpen}
+        />
+      );
     }
     return null;
   };

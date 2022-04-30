@@ -5,10 +5,10 @@ import EventCardList from '../components/events/EventCardList';
 function Home() {
   return (
     <>
-      <main className="md:py-22 relative z-50 py-24">
-        <div className="wrapper relative z-50 space-y-20 md:space-y-24">
+      <main className="bg-pattern relative z-50 py-20">
+        <div className="wrapper relative z-50 space-y-20 ">
           <header className="space-y-5 md:space-y-9">
-            <h1 className="mx-auto text-[2.5rem] font-bold sm:text-5xl md:text-6xl">
+            <h1 className="mx-auto text-5xl font-bold leading-4 sm:text-5xl md:text-6xl">
               <span>
                 <img className="opacity-10" src="./assets/accent.svg" alt="" />
               </span>

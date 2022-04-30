@@ -3,7 +3,7 @@ import SectionTitle from '../../../components/SectionTitle';
 import RaceList from '../../../components/racesPage/RaceList';
 import { VIRTUAL_RACE } from '../../../api/types';
 import { runningRaceDistanceOptions } from '../../../api/options';
-import { fetchForMultipleEvents } from '../../../api/apiHelpers';
+import { fetchForMultipleEvents } from '../../../api/apiMethods';
 import Search from '../../../components/Search';
 import Filter from '../../../components/Filter';
 import RaceEventsPage from '../../../components/racesPage/RaceEventsPage';

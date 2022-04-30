@@ -5,7 +5,7 @@ import RaceMeta from '../../../components/racePage/RaceMeta';
 import Cta from '../../../components/Cta';
 import RaceDescription from '../../../components/racePage/RaceDescription';
 
-import { fetchRacePaths, fetchById } from '../../../api/apiHelpers';
+import { fetchRacePaths, fetchById } from '../../../api/apiMethods';
 import {
   RUNNING_RACE,
   VIRTUAL_RACE,

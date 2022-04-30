@@ -1,15 +1,25 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import NavModalLinkList from '../NavModalLinkList';
 import useNavigationModal from '../../../hooks/useNavigationModal';
 import Link from 'next/link';
 import { runningLinks, bikingLinks } from '../options';
 
 function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
+  const { pathname } = useRouter();
+
   const mobileNavRef = useRef();
   const { init, open, close } = useNavigationModal(
     isMobileNavOpen,
     mobileNavRef
   );
+
+  useEffect(() => {
+    return () => {
+      setIsMobileNavOpen(false);
+      console.log('cat');
+    };
+  }, [pathname]);
   return (
     <div
       ref={mobileNavRef}
@@ -54,7 +64,7 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
       </div>
       <div className=" bg-blueGrey-100">
         <div className="mx-auto flex max-w-md justify-between px-10 py-8 text-xl font-bold">
-          <h2>Calendar</h2>
+          <Link href="/calendar">Calendar</Link>
           <h2>Create Race</h2>
         </div>
       </div>
