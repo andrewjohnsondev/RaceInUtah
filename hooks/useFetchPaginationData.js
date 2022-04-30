@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 
 import { reduceArray } from '../helpers/array';
-import { sortByDate } from '../api/apiHelpers';
+import { sortByDate } from '../api/apiMethods';
 import { REQUEST_NUMBER } from '../api/types';
-import { fetchForMultipleEventsWithPage } from '../api/apiHelpers';
+import { fetchForMultipleEventsWithPage } from '../api/apiMethods';
 import { RaceListContext } from '../components/providers/RaceListProvider';
 import { RaceEventsContext } from '../components/providers/RaceEventsProvider';
 

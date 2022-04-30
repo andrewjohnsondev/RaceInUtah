@@ -6,7 +6,7 @@ import Button from './Button';
 import Fieldset from './Fieldset';
 import { RaceListContext } from './providers/RaceListProvider';
 import { RaceEventsContext } from './providers/RaceEventsProvider';
-import { fetchByEventAndDistance } from '../api/apiHelpers';
+import { fetchByEventAndDistance } from '../api/apiMethods';
 
 function Filter({ events, distances }) {
   const [raceList, setRaceList] = useContext(RaceListContext);

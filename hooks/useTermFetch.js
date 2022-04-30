@@ -5,7 +5,7 @@ import { reduceArray } from '../helpers/array';
 import { RaceEventsContext } from '../components/providers/RaceEventsProvider';
 
 import api from '../api';
-import { fetchByCity, fetchByEventName } from '../api/apiHelpers';
+import { fetchByCity, fetchByEventName } from '../api/apiMethods';
 
 const useTermFetch = (term) => {
   const [raceEvents, setRaceEvents] = useContext(RaceEventsContext);

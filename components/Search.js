@@ -3,7 +3,7 @@ import useTermFetch from '../hooks/useTermFetch';
 import { IsSearchingContext } from './providers/IsSearchingProvider';
 import { RaceListContext } from './providers/RaceListProvider';
 import { RaceEventsContext } from './providers/RaceEventsProvider';
-import { fetchForMultipleEvents } from '../api/apiHelpers';
+import { fetchForMultipleEvents } from '../api/apiMethods';
 
 function Search({ eventTypes }) {
   const [term, setTerm] = useState('');
