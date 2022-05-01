@@ -16,7 +16,7 @@ function trail({ races, events }) {
 }
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([TRAIL_RACE]);
+  const races = await fetchForMultipleEvents([TRAIL_RACE], false);
 
   return {
     props: {

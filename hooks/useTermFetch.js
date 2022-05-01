@@ -1,11 +1,10 @@
 import { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useDebouncedCallback } from 'use-debounce';
-import { reduceArray } from '../helpers/array';
+import { removeEventDuplicates } from '../helpers/array';
 import { RaceEventsContext } from '../components/providers/RaceEventsProvider';
 
-import api from '../api';
-import { fetchByCity, fetchByEventName } from '../api/apiMethods';
+import { fetchByEvent } from '../api/apiMethods';
 
 const useTermFetch = (term) => {
   const [raceEvents, setRaceEvents] = useContext(RaceEventsContext);
@@ -14,15 +13,19 @@ const useTermFetch = (term) => {
   const debounced = useDebouncedCallback(
     (value) => {
       Promise.all([
-        ...raceEvents.map((raceEvent) => fetchByCity(term, raceEvent)),
-        ...raceEvents.map((raceEvent) => fetchByEventName(term, raceEvent)),
+        ...raceEvents.map((raceEvent) =>
+          fetchByEvent(raceEvent, false, { city: term })
+        ),
+        ...raceEvents.map((raceEvent) =>
+          fetchByEvent(raceEvent, false, { name: term })
+        ),
       ]).then((res) => {
         let results = new Set();
         res.forEach((result) =>
           result.data.races.forEach((race) => results.add(race))
         );
 
-        setRaces(reduceArray([...results]));
+        setRaces(removeEventDuplicates([...results]));
       });
     },
     500,

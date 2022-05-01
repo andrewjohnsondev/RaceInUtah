@@ -17,7 +17,7 @@ function road({ races, events }) {
 }
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([ROAD_BIKE_RACE]);
+  const races = await fetchForMultipleEvents([ROAD_BIKE_RACE], false);
 
   return {
     props: {

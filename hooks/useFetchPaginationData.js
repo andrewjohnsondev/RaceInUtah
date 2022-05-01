@@ -1,9 +1,8 @@
 import { useState, useContext } from 'react';
 
-import { reduceArray } from '../helpers/array';
-import { sortByDate } from '../api/apiMethods';
+import { sortEventsByDate, removeEventDuplicates } from '../helpers/array';
 import { REQUEST_NUMBER } from '../api/types';
-import { fetchForMultipleEventsWithPage } from '../api/apiMethods';
+import { fetchForMultipleEvents } from '../api/apiMethods';
 import { RaceListContext } from '../components/providers/RaceListProvider';
 import { RaceEventsContext } from '../components/providers/RaceEventsProvider';
 
@@ -15,9 +14,13 @@ const useFetchPaginationData = () => {
   const [hasMore, setHasMore] = useState(true);
 
   const fetchData = async (event_type) => {
-    const races = await fetchForMultipleEventsWithPage(raceEvents, pageNumber);
+    const races = await fetchForMultipleEvents(raceEvents, false, {
+      page: pageNumber,
+    });
     if (races.length < REQUEST_NUMBER) setHasMore(false);
-    setRaceList((prevList) => sortByDate(reduceArray([...prevList, ...races])));
+    setRaceList((prevList) =>
+      sortEventsByDate(removeEventDuplicates([...prevList, ...races]))
+    );
     setPageNumber((prevPage) => prevPage + 1);
   };
   return [fetchData, hasMore];

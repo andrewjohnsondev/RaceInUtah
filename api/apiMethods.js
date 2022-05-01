@@ -1,16 +1,6 @@
 import api from './index';
-import { reduceDeepArray } from '../helpers/array';
+import { removeEventDuplicates, sortEventsByDate } from '../helpers/array';
 import { REQUEST_NUMBER } from './types';
-
-export const fetchByCity = (cityName, eventType) => {
-  return api.get('', {
-    params: {
-      event_type: eventType,
-      city: cityName,
-      results_per_page: REQUEST_NUMBER,
-    },
-  });
-};
 
 export const fetchById = (id) => {
   return api.get('https://runsignup.com/rest/race', {
@@ -28,21 +18,13 @@ export const fetchById = (id) => {
   });
 };
 
-export const fetchByEventName = (eventName, eventType) => {
-  return api.get('', {
-    params: {
-      event_type: eventType,
-      name: eventName,
-      results_per_page: REQUEST_NUMBER,
-    },
-  });
-};
-export const fetchByEvent = (eventType, all = false) => {
+export const fetchByEvent = (eventType, all = false, options) => {
   if (all) {
     return api.get('', {
       params: {
         event_type: eventType,
-        results_per_page: 500,
+        results_per_page: 1000,
+        ...options,
       },
     });
   }
@@ -50,81 +32,23 @@ export const fetchByEvent = (eventType, all = false) => {
     params: {
       event_type: eventType,
       results_per_page: REQUEST_NUMBER,
+      ...options,
     },
   });
 };
 
-export const fetchByEventAndDistance = async ({ eventTypes, minDistance }) => {
-  const events = eventTypes.split(',');
-  if (minDistance === 0 || !minDistance) {
-    const races = await fetchForMultipleEvents(events);
-    return races;
-  }
-  const races = await fetchForMultipleEventsWithDistance(events, minDistance);
-  return races;
-};
-
-export const fetchForMultipleEvents = async (eventTypes, all = false) => {
-  const dataList = await Promise.all(
-    eventTypes.map((e) => fetchByEvent(e, all))
-  );
-  const races = [];
-  dataList.forEach((data) => races.push(...data.data.races));
-  races.sort((raceA, raceB) => {
-    return new Date(raceA.next_date) - new Date(raceB.next_date);
-  });
-
-  return sortByDate(reduceDeepArray([...new Set(races)]));
-};
-
-export const fetchByEventAndPage = (eventType, page) => {
-  return api.get('', {
-    params: {
-      event_type: eventType,
-      page: page,
-      results_per_page: REQUEST_NUMBER,
-    },
-  });
-};
-export const fetchByDistance = (eventType, distance) => {
-  return api.get('', {
-    params: {
-      event_type: eventType,
-      min_distance: +distance,
-      results_per_page: REQUEST_NUMBER,
-    },
-  });
-};
-
-export const fetchForMultipleEventsWithPage = async (
+export const fetchForMultipleEvents = async (
   eventTypes,
-  pageNumber
+  all = false,
+  options
 ) => {
   const dataList = await Promise.all(
-    eventTypes.map((e) => fetchByEventAndPage(e, pageNumber))
+    eventTypes.map((eventType) => fetchByEvent(eventType, all, options))
   );
-  const races = [];
-  dataList.forEach((data) => races.push(...data.data.races));
-  return sortByDate(reduceDeepArray([...new Set(races)]));
-};
-export const fetchForMultipleEventsWithDistance = async (
-  eventTypes,
-  distance
-) => {
-  const dataList = await Promise.all(
-    eventTypes.map((e) => fetchByDistance(e, distance))
-  );
-  const races = [];
-  dataList.forEach((data) => races.push(...data.data.races));
-  return sortByDate(reduceDeepArray([...new Set(races)]));
-};
+  let races = [];
+  dataList.forEach(({ data }) => (races = [...races, ...data.races]));
 
-export const sortByDate = (arr) => {
-  arr.sort((raceA, raceB) => {
-    return new Date(raceA.race.next_date) - new Date(raceB.race.next_date);
-  });
-
-  return arr;
+  return sortEventsByDate(removeEventDuplicates(races));
 };
 
 export const fetchRacePaths = async (eventTypes) => {
@@ -133,26 +57,14 @@ export const fetchRacePaths = async (eventTypes) => {
   return paths;
 };
 
-// export const fetchForMultipleRacesTest = async (eventTypes, ...rest) => {
-//   const dataList = await Promise.all(
-//     eventTypes.map((e) => fetchByEvent(e, ...rest))
-//   );
-
-//   const races = [];
-//   dataList.forEach((data) => races.push(...data.data.races));
-
-//   races.sort((raceA, raceB) => {
-//     return new Date(raceA.next_date) - new Date(raceB.next_date);
-//   });
-
-//   return sortByDate(reduceArray([...new Set(races)]));
-// }
-
-// export const fetchByEventTest = (eventType, ...args) => {
-//   return api.get('', {
-//     params: {
-//       event_type: eventType,
-//       ...args,
-//     },
-//   });
-// };
+export const fetchByEventAndDistance = async ({ eventTypes, minDistance }) => {
+  const events = eventTypes.split(',');
+  if (minDistance === 0 || !minDistance) {
+    const races = await fetchForMultipleEvents(events, false);
+    return races;
+  }
+  const races = await fetchForMultipleEvents(events, false, {
+    min_distance: minDistance,
+  });
+  return races;
+};

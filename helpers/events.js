@@ -1,4 +1,4 @@
-import { reduceShallowArray } from '../helpers/array';
+import { removeCalendarDuplicates } from '../helpers/array';
 import {
   RUNNING_RACE,
   TRAIL_RACE,
@@ -116,5 +116,5 @@ export const makeCalendarEvents = async (allEvents) => {
     (e) => (calendarEvents = [...calendarEvents, ...e])
   );
 
-  return reduceShallowArray(calendarEvents);
+  return removeCalendarDuplicates(calendarEvents);
 };

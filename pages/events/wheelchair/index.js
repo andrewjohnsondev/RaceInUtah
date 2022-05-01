@@ -16,7 +16,7 @@ function wheelchair({ races, events }) {
 }
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([WHEELCHAIR]);
+  const races = await fetchForMultipleEvents([WHEELCHAIR], false);
 
   return {
     props: {

@@ -22,12 +22,10 @@ function all({ races, events }) {
 }
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([
-    BIKE_TOURS,
-    MOUNTAIN_BIKE_RACE,
-    ROAD_BIKE_RACE,
-    GRAVEL_BIKE_RACE,
-  ]);
+  const races = await fetchForMultipleEvents(
+    [BIKE_TOURS, MOUNTAIN_BIKE_RACE, ROAD_BIKE_RACE, GRAVEL_BIKE_RACE],
+    false
+  );
 
   return {
     props: {

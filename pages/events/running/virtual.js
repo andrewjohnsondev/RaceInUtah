@@ -30,7 +30,7 @@ function trail({ races, events }) {
 </Section>;
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([VIRTUAL_RACE]);
+  const races = await fetchForMultipleEvents([VIRTUAL_RACE], false);
 
   return {
     props: {

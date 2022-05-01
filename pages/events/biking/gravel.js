@@ -17,7 +17,7 @@ function gravel({ races, events }) {
 }
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([GRAVEL_BIKE_RACE]);
+  const races = await fetchForMultipleEvents([GRAVEL_BIKE_RACE], false);
 
   return {
     props: {

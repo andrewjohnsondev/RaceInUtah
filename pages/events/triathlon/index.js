@@ -16,7 +16,7 @@ function triathlon({ races, events }) {
 }
 
 export const getStaticProps = async () => {
-  const races = await fetchForMultipleEvents([TRIATHLON]);
+  const races = await fetchForMultipleEvents([TRIATHLON], false);
 
   return {
     props: {
