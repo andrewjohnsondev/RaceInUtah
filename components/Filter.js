@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 
 import Button from './Button';
 import Fieldset from './Fieldset';
@@ -75,11 +76,11 @@ function Filter({ events, distances }) {
         onClick={toggleModal}
         className="group border bg-white text-primary shadow-sm  transition-colors hover:bg-primary hover:text-white"
       >
-        <span className="mr-2 hidden text-blueGrey-600 group-hover:text-white sm:block">
+        <span className="mr-2 hidden text-blueGrey-700 group-hover:text-white sm:block">
           Filter
         </span>
         <svg
-          className="fill-primary/60 group-hover:fill-white"
+          className="fill-blueGrey-900 group-hover:fill-white"
           width="28"
           height="28"
           viewBox="0 0 21 21"
@@ -98,10 +99,10 @@ function Filter({ events, distances }) {
         ref={formRef}
         className={`${
           isModalOpen ? 'block' : 'hidden'
-        } bg-green absolute top-[120%] left-0 w-full bg-white shadow-2xl md:left-[auto] md:right-0 md:max-w-lg `}
+        } absolute top-[120%] left-0 w-full  bg-white shadow-2xl md:left-[auto] md:right-0 md:max-w-lg `}
       >
         <form className="relative" onSubmit={handleSubmit(onSubmit)}>
-          <div className="space-y-10 bg-white py-8 px-4 sm:px-8 md:space-y-12 md:p-12">
+          <div className="space-y-10 rounded bg-white py-8 px-4 sm:px-8 md:space-y-12 md:p-12">
             {ifEventsRendersField()}
             {ifDistancesRendersField()}
           </div>
@@ -126,4 +127,9 @@ function Filter({ events, distances }) {
     </div>
   );
 }
+
+Filter.propTypes = {
+  events: PropTypes.array,
+  distances: PropTypes.array,
+};
 export default Filter;

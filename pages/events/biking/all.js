@@ -40,4 +40,5 @@ export const getStaticProps = async () => {
     revalidate: 60,
   };
 };
+
 export default all;

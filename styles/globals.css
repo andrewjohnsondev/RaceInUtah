@@ -27,13 +27,13 @@
   @apply relative z-50 flex flex-col items-end justify-between gap-12 md:flex-row;
 }
 
-.bg-image {
+/* .bg-image {
   position: absolute;
   display: none;
   bottom: -55%;
   right: -10%;
   @apply md:block;
-}
+} */
 
 .fade-in {
   animation: fade-in 300ms ease forwards;
@@ -75,7 +75,7 @@
   }
 
   .background-image {
-    @apply absolute bottom-10 h-full w-full opacity-5;
+    @apply absolute bottom-20 h-full w-full opacity-5;
     background-image: url('/assets/home-landscape.svg');
     background-repeat: no-repeat;
     background-position: center;

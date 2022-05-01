@@ -28,7 +28,7 @@ const options = [
   },
 ];
 
-function EventCardList() {
+function EventCardsList() {
   const renderList = () =>
     options.map(({ type, href, imageLink }) => {
       return (
@@ -44,4 +44,4 @@ function EventCardList() {
     </ul>
   );
 }
-export default EventCardList;
+export default EventCardsList;

@@ -4,7 +4,6 @@ import {
   runningEventOptions,
 } from '../../../api/options';
 import { fetchForMultipleEvents } from '../../../api/apiMethods';
-
 import RaceEventsPage from '../../../components/racesPage/RaceEventsPage';
 
 function all({ races, events }) {

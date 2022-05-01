@@ -4,7 +4,6 @@ import RaceEventsList from '../../../components/racePage/RaceEventsList';
 import RaceMeta from '../../../components/racePage/RaceMeta';
 import Cta from '../../../components/Cta';
 import RaceDescription from '../../../components/racePage/RaceDescription';
-
 import { fetchRacePaths, fetchById } from '../../../api/apiMethods';
 import {
   RUNNING_RACE,
@@ -20,7 +19,6 @@ import {
 } from '../../../api/types';
 
 function Race({ race }) {
-  console.log(race);
   const location = `${race.address.street} ${race.address.city}, ${race.address.state}, ${race.address.zipcode}`;
   const data = race.description;
 

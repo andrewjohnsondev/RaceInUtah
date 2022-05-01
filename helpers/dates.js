@@ -1,7 +1,8 @@
-import { format, compareAsc } from 'date-fns';
+import moment from 'moment';
 
 export const formatDateToString = (time) => {
-  const formatTime = format(new Date(time), 'MMM dd, yyyy');
+  const dt = new Date(time);
+  const formatTime = moment(dt).format('MMM DD, YYYY');
   return formatTime;
 };
 
@@ -21,9 +22,4 @@ export const formatDates = (startDate, finishDate) => {
 export const compareDates = (registrationDate) => {
   const today = new Date();
   return compareAsc(new Date(registrationDate), today);
-};
-
-export const formatToCalendarDate = (time) => {
-  const formatTime = format(new Date(time), 'yyyy-MM-dd');
-  return formatTime;
 };

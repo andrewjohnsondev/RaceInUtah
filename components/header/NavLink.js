@@ -49,14 +49,15 @@ function NavLink({ text, href }) {
     return null;
   };
   return (
-    <li
-      ref={linkRef}
-      className={`${
-        pathname === href && 'active'
-      }  relative h-full cursor-pointer border-b-4 border-transparent py-8 px-4 text-lg transition-all hover:text-primary  md:block`}
-    >
+    <li ref={linkRef}>
       <Link href={href}>
-        <a>{text}</a>
+        <a
+          className={`${
+            pathname === href && 'active'
+          }  relative h-full cursor-pointer border-b-4 border-transparent py-8 px-4 text-lg transition-all hover:text-primary  md:block`}
+        >
+          {text}
+        </a>
       </Link>
       {renderModal()}
     </li>

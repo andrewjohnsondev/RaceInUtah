@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Logo from '../Logo';
 import Nav from './Nav';

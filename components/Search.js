@@ -1,4 +1,6 @@
 import { useState, useEffect, useContext, useRef } from 'react';
+import PropTypes from 'prop-types';
+
 import useTermFetch from '../hooks/useTermFetch';
 import { IsSearchingContext } from './providers/IsSearchingProvider';
 import { RaceListContext } from './providers/RaceListProvider';
@@ -41,7 +43,7 @@ function Search({ eventTypes }) {
       onSubmit={(e) => e.preventDefault()}
     >
       <label
-        className="text-xl font-semibold text-blueGrey-800"
+        className="text-lg font-semibold text-blueGrey-800 md:text-xl"
         htmlFor="filter"
       >
         Search
@@ -49,7 +51,7 @@ function Search({ eventTypes }) {
       <input
         autoComplete="off"
         id="filter"
-        className="border p-2 text-blueGrey-600 placeholder:text-blueGrey-400"
+        className="rounded border p-2 text-blueGrey-600 placeholder:text-blueGrey-400"
         type="text"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
@@ -58,5 +60,9 @@ function Search({ eventTypes }) {
     </form>
   );
 }
+
+Search.propTypes = {
+  eventTypes: PropTypes.array,
+};
 
 export default Search;
