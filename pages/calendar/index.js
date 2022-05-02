@@ -5,14 +5,26 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import { fetchForMultipleEvents } from '../../api/apiMethods';
 import { makeCalendarEvents } from '../../helpers/events';
 import { allEvents } from '../../api/options';
+import CalendarLegend from '../../components/CalendarLegend';
 
 const calendar = ({ calendarObjects }) => {
   const router = useRouter();
 
   const localizer = momentLocalizer(moment);
+  const eventStyleGetter = (event) => {
+    console.log(event);
+    const style = {
+      backgroundColor: event.bg,
+    };
+
+    return {
+      style,
+    };
+  };
 
   return (
     <div className="min-h-screen p-2">
+      <CalendarLegend />
       <Calendar
         className="min-h-screen"
         localizer={localizer}
@@ -20,6 +32,7 @@ const calendar = ({ calendarObjects }) => {
         startAccessor="start"
         endAccessor="end"
         onSelectEvent={(e) => router.push(`/events/race/${e.id}`)}
+        eventPropGetter={eventStyleGetter}
       />
     </div>
   );

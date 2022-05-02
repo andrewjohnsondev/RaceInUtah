@@ -62,7 +62,7 @@ export const checkEventType = (e) => {
   }
 };
 
-const makeCalendarObjects = (data) => {
+const makeCalendarObjects = (data, bg) => {
   const calendarObjects = data.map(({ race }) => {
     const dt = new Date(race.next_date);
     return {
@@ -71,6 +71,7 @@ const makeCalendarObjects = (data) => {
       end: moment(dt).format('yyyy-MM-DD'),
       allDay: true,
       id: race.race_id,
+      bg,
     };
   });
 

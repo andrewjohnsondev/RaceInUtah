@@ -4,7 +4,7 @@ function RaceEventsList({ race }) {
   const renderEvents = () =>
     race.events.map((e) => (
       <li className="group" key={e.event_id}>
-        <RaceEvent event={e} />
+        <RaceEvent race={race} event={e} />
       </li>
     ));
   return (

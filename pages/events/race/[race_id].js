@@ -52,7 +52,7 @@ function Race({ race }) {
           <RaceEventsList race={race} />
         </div>
       </section>
-      <Cta text="Sign up!" />
+      <Cta url={race.url} text="Sign up!" />
       <section className="wrapper bg-pattern space-y-14 py-20 md:py-24">
         <RaceDescription data={data} race_logo={race.logo_url} />
       </section>

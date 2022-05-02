@@ -51,7 +51,7 @@ function Search({ eventTypes }) {
       <input
         autoComplete="off"
         id="filter"
-        className="rounded border p-2 text-blueGrey-600 placeholder:text-blueGrey-400"
+        className="rounded border p-2 text-blueGrey-600 shadow-sm placeholder:text-blueGrey-400"
         type="text"
         value={term}
         onChange={(e) => setTerm(e.target.value)}

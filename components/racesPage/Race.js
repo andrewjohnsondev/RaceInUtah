@@ -6,17 +6,17 @@ import { renderDistances, returnEventsTypes } from '../../helpers/events';
 function Race({ race }) {
   const eventTypes = returnEventsTypes(race);
 
-  const renderEventTypes = (eventTypes) => {
+  const renderEventTypes = (eventTypes, imageUrl) => {
     const last = eventTypes.length - 1;
     return eventTypes.map((e, index) => {
       if (index === last) return <span key={e}>{e}</span>;
       return (
-        <React.Fragment key={e}>
+        <div className="flex items-center gap-2" key={e}>
           <span>{e}</span>
-          <span>
-            <img src="/assets/dot.svg" alt="" />
+          <span className={imageUrl === '/assets/dark-dot.svg' && 'mr-2'}>
+            <img src={imageUrl} alt="" />
           </span>
-        </React.Fragment>
+        </div>
       );
     });
   };
@@ -29,25 +29,25 @@ function Race({ race }) {
           </time>
           <div className="event-shape bg-pattern-primary flex hidden h-full items-center justify-center gap-2 rounded-tr px-2 py-4 sm:block  md:pl-12">
             <p className="flex items-center justify-center gap-2 text-sm font-bold text-white md:text-xl">
-              {renderEventTypes(eventTypes)}
+              {renderEventTypes(eventTypes, '/assets/dot.svg')}
             </p>
           </div>
         </div>
         <div className="flex flex-col gap-6 rounded-b bg-white py-8 px-4 transition-colors group-hover:bg-primary group-hover:text-white md:flex-row md:justify-between md:px-10 md:py-12 md:text-left">
           <div className="md:space-y-4">
-            <h3 className="max-w-2xl text-xl font-bold md:text-2xl">
+            <h3 className="max-w-md text-xl font-bold md:text-2xl">
               {race.name}
             </h3>
             <p className="md:text-xl">{`${race.address.city}, UT`}</p>
           </div>
           <div className="flex flex-col justify-between md:space-y-4">
-            <h4 className="text-base font-semibold md:text-xl">Distance:</h4>
+            <h4 className="text-lg font-semibold md:text-xl">Distance:</h4>
             <p className="mt-auto md:text-xl">{renderDistances(race)}</p>
           </div>
           <div className="flex flex-col justify-between sm:hidden md:space-y-4">
-            <h4 className="text-base font-semibold md:text-xl">Events:</h4>
+            <h4 className="text-lg font-semibold md:text-xl">Events:</h4>
             <p className="mt-auto flex justify-center md:text-xl">
-              {renderEventTypes(eventTypes)}
+              {renderEventTypes(eventTypes, '/assets/dark-dot.svg')}
             </p>
           </div>
         </div>

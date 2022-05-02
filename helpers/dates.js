@@ -21,5 +21,6 @@ export const formatDates = (startDate, finishDate) => {
 
 export const compareDates = (registrationDate) => {
   const today = new Date();
-  return compareAsc(new Date(registrationDate), today);
+  const checkDate = new Date(registrationDate);
+  return moment(checkDate).isAfter(today);
 };

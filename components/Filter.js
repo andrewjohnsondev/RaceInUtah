@@ -74,7 +74,7 @@ function Filter({ events, distances }) {
     <div>
       <Button
         onClick={toggleModal}
-        className="group border bg-white text-primary shadow-sm  transition-colors hover:bg-primary hover:text-white"
+        className="group rounded border bg-white text-primary shadow shadow-blueGrey-400/30 transition-colors hover:bg-primary hover:text-white"
       >
         <span className="mr-2 hidden text-blueGrey-700 group-hover:text-white sm:block">
           Filter

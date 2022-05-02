@@ -7,7 +7,7 @@ function RaceMeta({ title, meta, icon }) {
         </span>
         {title}
       </h2>
-      <p className="text-base text-white/80 md:text-lg">{meta}</p>
+      <p className="max-w-xs text-base text-white/80 md:text-lg">{meta}</p>
     </div>
   );
 }
