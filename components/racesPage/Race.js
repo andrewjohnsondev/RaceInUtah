@@ -2,10 +2,8 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { formatDates } from '../../helpers/dates';
 import { renderDistances, returnEventsTypes } from '../../helpers/events';
-import { RaceEventsContext } from '../providers/RaceEventsProvider';
 
 function Race({ race }) {
-  const [raceEvents, setRaceEvents] = useContext(RaceEventsContext);
   const eventTypes = returnEventsTypes(race);
 
   const renderEventTypes = (eventTypes) => {

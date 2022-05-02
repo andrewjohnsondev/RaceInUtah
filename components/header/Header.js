@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, createPortal } from 'react';
 
 import Logo from '../Logo';
 import Nav from './Nav';
@@ -9,7 +9,7 @@ function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(null);
 
   return (
-    <header className="relative border border-t-4 border-transparent border-t-blueGrey-900 bg-white py-6 md:py-2">
+    <header className="sticky top-0 z-[999999] border border-t-4 border-transparent border-t-primary bg-white py-6 shadow-lg shadow-blueGrey-400/10 md:py-0">
       <div className="wrapper flex items-center justify-between">
         <Logo />
         <Hamburger

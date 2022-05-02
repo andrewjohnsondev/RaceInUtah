@@ -1,6 +1,13 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 function NavModalLinkList({ links, classList }) {
+  const { pathname } = useRouter();
+  const renderActiveLink = (href) => {
+    return href === pathname
+      ? 'text-darkPrimary'
+      : 'text-blueGrey-700 hover:text-blueGrey-700/70';
+  };
   const renderLinks = () => {
     return links.map(({ text, href }) => {
       return (
@@ -10,7 +17,7 @@ function NavModalLinkList({ links, classList }) {
               className={
                 classList
                   ? classList
-                  : 'text-base text-blueGrey-700 transition-colors hover:text-blueGrey-700/70'
+                  : `text-base ${renderActiveLink(href)} transition-colors `
               }
             >
               {text}

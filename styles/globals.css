@@ -9,7 +9,6 @@
   }
   body {
     font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
     line-height: 1.7;
     @apply bg-blueGrey-100 text-blueGrey-900 outline-primary;
   }
@@ -27,6 +26,19 @@
   @apply relative z-50 flex flex-col items-end justify-between gap-12 md:flex-row;
 }
 
+body {
+  min-height: 100vh;
+}
+
+body > *:first-child {
+  height: 100%;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 /* .bg-image {
   position: absolute;
   display: none;

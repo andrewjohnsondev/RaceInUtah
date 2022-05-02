@@ -10,7 +10,10 @@ function RaceList() {
   const renderRaces = () =>
     raceList.map(({ race }) => {
       return (
-        <li className="rounded drop-shadow-lg" key={race.name}>
+        <li
+          className="rounded shadow-lg shadow-blueGrey-400/30"
+          key={race.name}
+        >
           <Race race={race} />
         </li>
       );

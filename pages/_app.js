@@ -8,7 +8,7 @@ import RaceEventsProvider from '../components/providers/RaceEventsProvider';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="flex h-screen flex-col">
+    <>
       <Header />
       <RaceListProvider>
         <RaceEventsProvider>
@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
         </RaceEventsProvider>
       </RaceListProvider>
       <Footer />
-    </div>
+    </>
   );
 }
 

@@ -7,6 +7,11 @@ import { runningLinks, bikingLinks } from '../options';
 
 function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
   const { pathname } = useRouter();
+  const renderActiveLink = (href) => {
+    return href === pathname
+      ? 'text-primary'
+      : 'text-blueGrey-700 hover:text-blueGrey-700/70';
+  };
 
   const mobileNavRef = useRef();
   const { init, open, close } = useNavigationModal(
@@ -17,13 +22,12 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
   useEffect(() => {
     return () => {
       setIsMobileNavOpen(false);
-      console.log('cat');
     };
   }, [pathname]);
   return (
     <div
       ref={mobileNavRef}
-      className={`${init} ${open} ${close} absolute top-4 right-3 z-[9999] min-h-[65vh] w-[95%] rounded bg-white shadow-xl transition-all duration-1000 md:hidden`}
+      className={`${init} ${open} ${close} absolute top-4 right-3 z-[9999] min-h-[65vh] w-[95%] rounded bg-white shadow-xl shadow-blueGrey-400/50 transition-all duration-1000 md:hidden`}
     >
       <h2 className="mx-auto max-w-md border border-b-2 border-transparent border-b-blueGrey-900/10 px-10 py-8 text-left hover:text-blueGrey-700">
         <Link href="/">
@@ -36,20 +40,14 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
             <h3 className="hover:text-blueGrey-600">
               <Link href="/events/running/all">Running</Link>
             </h3>
-            <NavModalLinkList
-              classList="font-normal text-blueGrey-600 hover:text-blueGrey-600/70"
-              links={runningLinks}
-            />
+            <NavModalLinkList links={runningLinks} />
           </div>
 
           <div className="space-y-4">
             <h3 className="hover:text-blueGrey-600">
               <Link href="/events/biking/all">Biking</Link>
             </h3>
-            <NavModalLinkList
-              classList="font-normal text-blueGrey-600 hover:text-blueGrey-600/70"
-              links={bikingLinks}
-            />
+            <NavModalLinkList links={bikingLinks} />
           </div>
           <h3 className="hover:text-blueGrey-600">
             <Link href="/events/triathlon">Triathlon</Link>

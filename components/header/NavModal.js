@@ -5,26 +5,22 @@ import useNavigationModal from '../../hooks/useNavigationModal';
 import NavModalLinkList from './NavModalLinkList';
 import { runningLinks, bikingLinks } from './options';
 
-function NavModal({ isSecondaryNavOpen, setIsSecondaryNavOpen }) {
+function NavModal({ isSubMenuOpen, setIsSubMenuOpen }) {
   const modalRef = useRef();
   const { pathname } = useRouter();
 
-  const { init, open, close } = useNavigationModal(
-    isSecondaryNavOpen,
-    modalRef
-  );
+  const { init, open, close } = useNavigationModal(isSubMenuOpen, modalRef);
 
   useEffect(() => {
-    console.log('andrew');
-    () => {
-      setIsSecondaryNavOpen(false);
+    return () => {
+      setIsSubMenuOpen(false);
     };
   }, [pathname]);
 
   return (
     <ul
       ref={modalRef}
-      className={`absolute ${init} ${open} ${close} left-0 top-[104%] z-[99999] grid w-[400px] grid-cols-[min-content,_min-content] justify-center gap-6 gap-x-16 rounded bg-white p-8 text-blueGrey-900  shadow-lg transition-all`}
+      className={`absolute ${init} ${open} ${close} left-0 top-[100%] z-[99999] grid w-[400px] grid-cols-[min-content,_min-content] justify-center gap-6 gap-x-16 rounded bg-white p-8 text-blueGrey-900  shadow-xl shadow-blueGrey-400/50 transition-all`}
     >
       <li className="space-y-4">
         <Link href="/events/running/all">

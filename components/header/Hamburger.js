@@ -1,14 +1,19 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Hamburger({ isMobileNavOpen, setIsMobileNavOpen }) {
   const [isHamburgerIcon, setIsHamburgerIcon] = useState(true);
   const hamburgerSrc = '/assets/hamburger.svg';
   const closeSrc = '/assets/close-icon.svg';
   const handleHamburgerClick = () => {
-    setIsHamburgerIcon(!isHamburgerIcon);
     setIsMobileNavOpen(!isMobileNavOpen);
   };
+
+  useEffect(() => {
+    if (isMobileNavOpen !== null) {
+      setIsHamburgerIcon(!isMobileNavOpen);
+    }
+  }, [isMobileNavOpen]);
   return (
     <div
       onClick={handleHamburgerClick}

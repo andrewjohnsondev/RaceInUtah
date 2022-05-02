@@ -12,8 +12,9 @@ const calendar = ({ calendarObjects }) => {
   const localizer = momentLocalizer(moment);
 
   return (
-    <div className="min-h-[100%] p-2">
+    <div className="min-h-screen p-2">
       <Calendar
+        className="min-h-screen"
         localizer={localizer}
         events={calendarObjects}
         startAccessor="start"
