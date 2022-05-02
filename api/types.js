@@ -9,7 +9,4 @@ export const BIKE_TOURS = 'bike_ride';
 export const TRIATHLON = 'triathlon';
 export const DUATHLON = 'duathlon';
 export const WHEELCHAIR = 'wheelchair';
-
-export const REQUEST_NUMBER = '15';
-
-const GOOGLE_API_KEY = 'AIzaSyAMAl7qNNq6apEUPdMX4Ljrw-0GFwl3WzQ';
+export const REQUEST_NUMBER = '25';

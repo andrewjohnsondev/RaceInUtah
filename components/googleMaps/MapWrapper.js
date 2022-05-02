@@ -3,13 +3,10 @@ import Map from './Map';
 import Loader from './Loader';
 import ErrorMsg from './ErrorMsg';
 
-const API_KEY = 'AIzaSyAMAl7qNNq6apEUPdMX4Ljrw-0GFwl3WzQ';
-
 const MapWrapper = ({ location, className }) => {
   const zoom = 8;
 
   const render = (status) => {
-    console.log(status);
     switch (status) {
       case Status.LOADING:
         return <Loader />;
@@ -22,7 +19,13 @@ const MapWrapper = ({ location, className }) => {
     }
   };
 
-  return <Wrapper className={className} render={render} apiKey={''} />;
+  return (
+    <Wrapper
+      className={className}
+      render={render}
+      apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+    />
+  );
 };
 
 export default MapWrapper;

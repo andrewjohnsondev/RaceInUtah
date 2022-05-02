@@ -5,8 +5,8 @@ import { REQUEST_NUMBER } from './types';
 export const fetchById = (id) => {
   return api.get('https://runsignup.com/rest/race', {
     params: {
-      api_secret: 'Y6Y9ghjIfGJ5gSjXghBHve7TM5ndjckN',
-      api_key: 'aH9ws2Ws3IsXLG6j89erUAZVc1XEA2SY',
+      api_key: process.env.NEXT_PUBLIC_RUNSIGNUP_API_KEY,
+      api_secret: process.env.NEXT_PUBLIC_RUNSIGNUP_SECRET_API_KEY,
       format: 'JSON',
       events: 'T',
       aflt_token: 'T',
