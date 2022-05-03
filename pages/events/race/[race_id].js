@@ -3,6 +3,7 @@ import MapWrapper from '../../../components/googleMaps/MapWrapper';
 import RaceEventsList from '../../../components/racePage/RaceEventsList';
 import RaceMeta from '../../../components/racePage/RaceMeta';
 import Cta from '../../../components/Cta';
+import BackButton from '../../../components/BackButton';
 import RaceDescription from '../../../components/racePage/RaceDescription';
 import { fetchRacePaths, fetchById } from '../../../api/apiMethods';
 import {
@@ -23,7 +24,8 @@ function Race({ race }) {
   const data = race.description;
 
   return (
-    <article>
+    <article className="relative">
+      <BackButton />
       <header className="bg-pattern wrapper mx-auto flex justify-center py-24 text-center">
         <SectionTitle title={race.name} />
       </header>

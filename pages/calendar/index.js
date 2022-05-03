@@ -6,13 +6,14 @@ import { fetchForMultipleEvents } from '../../api/apiMethods';
 import { makeCalendarEvents } from '../../helpers/events';
 import { allEvents } from '../../api/options';
 import CalendarLegend from '../../components/CalendarLegend';
+import { useEffect, useState } from 'react';
 
 const calendar = ({ calendarObjects }) => {
+  const [calendarView, setCalendarView] = useState('month');
   const router = useRouter();
 
   const localizer = momentLocalizer(moment);
   const eventStyleGetter = (event) => {
-    console.log(event);
     const style = {
       backgroundColor: event.bg,
     };
@@ -22,8 +23,23 @@ const calendar = ({ calendarObjects }) => {
     };
   };
 
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 700) {
+      setCalendarView('agenda');
+    }
+  }, []);
+
+  const renderView = () => {
+    if (screenWidth === 0 || screenWidth > 700) {
+      return 'month';
+    }
+
+    return 'agenda';
+  };
+
   return (
-    <div className="min-h-screen p-2">
+    <div className="min-h-screen px-2 py-6 md:py-4">
       <CalendarLegend />
       <Calendar
         className="min-h-screen"
@@ -34,6 +50,7 @@ const calendar = ({ calendarObjects }) => {
         onSelectEvent={(e) => router.push(`/events/race/${e.id}`)}
         eventPropGetter={eventStyleGetter}
       />
+      <CalendarLegend isMobileView={true} />
     </div>
   );
 };

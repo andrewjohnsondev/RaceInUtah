@@ -13,7 +13,7 @@ function Race({ race }) {
       return (
         <div className="flex items-center gap-2" key={e}>
           <span>{e}</span>
-          <span className={imageUrl === '/assets/dark-dot.svg' && 'mr-2'}>
+          <span className={imageUrl === '/assets/dark-dot.svg' ? 'mr-2' : null}>
             <img src={imageUrl} alt="" />
           </span>
         </div>
@@ -28,9 +28,9 @@ function Race({ race }) {
             {formatDates(race.next_date, race.next_end_date)}
           </time>
           <div className="event-shape bg-pattern-primary flex hidden h-full items-center justify-center gap-2 rounded-tr px-2 py-4 sm:block  md:pl-12">
-            <p className="flex items-center justify-center gap-2 text-sm font-bold text-white md:text-xl">
+            <div className="flex items-center justify-center gap-2 text-sm font-bold text-white md:text-xl">
               {renderEventTypes(eventTypes, '/assets/dot.svg')}
-            </p>
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-6 rounded-b bg-white py-8 px-4 transition-colors group-hover:bg-primary group-hover:text-white md:flex-row md:justify-between md:px-10 md:py-12 md:text-left">
@@ -46,9 +46,9 @@ function Race({ race }) {
           </div>
           <div className="flex flex-col justify-between sm:hidden md:space-y-4">
             <h4 className="text-lg font-semibold md:text-xl">Events:</h4>
-            <p className="mt-auto flex justify-center md:text-xl">
+            <div className="mt-auto flex justify-center md:text-xl">
               {renderEventTypes(eventTypes, '/assets/dark-dot.svg')}
-            </p>
+            </div>
           </div>
         </div>
       </a>

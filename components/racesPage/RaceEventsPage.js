@@ -6,6 +6,7 @@ import SectionTitle from '../SectionTitle';
 import Section from '../Section';
 import Filter from '../Filter';
 import Search from '../Search';
+
 import { RaceListContext } from '../providers/RaceListProvider';
 import { RaceEventsContext } from '../providers/RaceEventsProvider';
 
@@ -49,6 +50,5 @@ RaceEventsPage.propTypes = {
   eventOptions: PropTypes.array,
   distanceOptions: PropTypes.array,
   title: PropTypes.string,
-  includeFilter: PropTypes.string,
 };
 export default RaceEventsPage;

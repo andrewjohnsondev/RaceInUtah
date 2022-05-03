@@ -11,7 +11,8 @@ const options = [
   { title: 'Wheelchair', bg: 'bg-calendar-wheelchair' },
 ];
 
-function CalendarLegend() {
+function CalendarLegend({ isMobileView }) {
+  const renderView = isMobileView ? 'flex justify-center md:hidden' : 'hidden';
   const renderLegends = () => {
     return options.map((race) => {
       return (
@@ -26,7 +27,9 @@ function CalendarLegend() {
     });
   };
   return (
-    <ul className="wrapper mt-12 mb-6 hidden flex-wrap items-center gap-6 md:flex">
+    <ul
+      className={`wrapper mt-12 mb-6 flex-wrap items-center gap-6 md:flex ${renderView}`}
+    >
       {renderLegends()}
     </ul>
   );
