@@ -5,16 +5,24 @@ import {
 } from '../../../api/options';
 import { fetchForMultipleEvents } from '../../../api/apiMethods';
 import RaceEventsPage from '../../../components/racesPage/RaceEventsPage';
+import HeadComponent from '../../../components/HeadComponent';
 
 function all({ races, events }) {
   return (
-    <RaceEventsPage
-      races={races}
-      events={events}
-      eventOptions={runningEventOptions}
-      distanceOptions={runningRaceDistanceOptions}
-      title="All Upcoming Runs"
-    />
+    <>
+      <HeadComponent
+        title="All Runs | RaceInUtah"
+        description="Upcoming Runs in Utah"
+        keywords="Utah, Upcoming Utah Trail Runs, Upcoming Utah Runs, Upcoming Utah Virtual Runs, Virtual, Virtual Runs, Virtual Races, Road Runs, Trail Runs, Trail Races, Ultra, Marathon, Half Marathon, Races, Running, 10k, 5k"
+      />
+      <RaceEventsPage
+        races={races}
+        events={events}
+        eventOptions={runningEventOptions}
+        distanceOptions={runningRaceDistanceOptions}
+        title="All Upcoming Runs"
+      />
+    </>
   );
 }
 

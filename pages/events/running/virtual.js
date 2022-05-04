@@ -7,27 +7,25 @@ import { fetchForMultipleEvents } from '../../../api/apiMethods';
 import Search from '../../../components/Search';
 import Filter from '../../../components/Filter';
 import RaceEventsPage from '../../../components/racesPage/RaceEventsPage';
+import HeadComponent from '../../../components/HeadComponent';
 
 function trail({ races, events }) {
   return (
-    <RaceEventsPage
-      races={races}
-      events={events}
-      distanceOptions={runningRaceDistanceOptions}
-      title="Upcoming Virtual Runs"
-    />
+    <>
+      <HeadComponent
+        title="Virtual Runs | RaceInUtah"
+        description="Upcoming Virtual Runs in Utah"
+        keywords="Utah, Upcoming Utah Virtual Runs, Virtual, Virtual Runs, Virtual Races, Ultra, Marathon, Half Marathon, Races, Running, 10k, 5k"
+      />
+      <RaceEventsPage
+        races={races}
+        events={events}
+        distanceOptions={runningRaceDistanceOptions}
+        title="Upcoming Virtual Runs"
+      />
+    </>
   );
 }
-
-<Section className="wrapper bg-pattern space-y-12 md:space-y-20">
-  <SectionTitle title="Upcoming Virtual Runs" />
-  <div className="split">
-    <Search />
-    <Filter distances={runningRaceDistanceOptions} />
-  </div>
-
-  <RaceList type="run" />
-</Section>;
 
 export const getStaticProps = async () => {
   const races = await fetchForMultipleEvents([VIRTUAL_RACE], false);
