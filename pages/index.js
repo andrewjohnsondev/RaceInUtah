@@ -8,7 +8,7 @@ function Home() {
       <main className="bg-pattern relative z-50 py-20 md:py-24">
         <div className="wrapper relative z-50 space-y-20 md:space-y-24 ">
           <header className="space-y-5 md:space-y-6">
-            <h1 className="relative mx-auto text-5xl font-bold leading-4 sm:text-5xl md:text-6xl">
+            <h1 className="relative mx-auto text-5xl font-bold sm:text-5xl md:text-6xl">
               <span className="absolute left-0 top-[-25px]">
                 <img className="opacity-10" src="./assets/accent.svg" alt="" />
               </span>
