@@ -54,7 +54,8 @@ export const fetchForMultipleEvents = async (
 export const fetchRacePaths = async (eventTypes) => {
   const events = await fetchForMultipleEvents(eventTypes, true);
   const paths = events.map((e) => e.race_id);
-  return paths;
+  const filteredPaths = paths.filter((path) => path);
+  return filteredPaths;
 };
 
 export const fetchByEventAndDistance = async ({ eventTypes, minDistance }) => {
