@@ -6,6 +6,7 @@ import { fetchForMultipleEvents } from '../../api/apiMethods';
 import { makeCalendarEvents } from '../../helpers/events';
 import { allEvents } from '../../api/options';
 import CalendarLegend from '../../components/CalendarLegend';
+import HeadComponent from '../../components/HeadComponent';
 import { useEffect, useState } from 'react';
 
 const calendar = ({ calendarObjects }) => {
@@ -40,6 +41,11 @@ const calendar = ({ calendarObjects }) => {
 
   return (
     <div className="min-h-screen px-2 py-6 md:py-4">
+      <HeadComponent
+        title="Calendar | RaceInUtah"
+        description="Upcoming Race in Utah"
+        keywords="Utah, Upcoming Gravel Races in Utah, Biking, Bike, Gravel, Gravel Bikes, Gravel Biking, Gravel Races, Gravel Bike Races Upcoming Mountain Races in Utah, Mountain, Mountain Bikes, Mountain Biking, Mountain Races, Mountain Bike Races, Upcoming Road Bike Races in Utah, Road, Road Bikes, Road Biking, Road Races, Upcoming Utah Bike Tours, Tours, Bike Tours, Bike Races, Touring, Bike Touring"
+      />
       <CalendarLegend />
       <Calendar
         className="min-h-screen"
