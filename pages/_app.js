@@ -8,6 +8,7 @@ import Footer from '../components/footer/Footer';
 import IsSearchingProvider from '../components/providers/IsSearchingProvider';
 import RaceListProvider from '../components/providers/RaceListProvider';
 import RaceEventsProvider from '../components/providers/RaceEventsProvider';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }) {
       <RaceListProvider>
         <RaceEventsProvider>
           <IsSearchingProvider>
-            <Component {...pageProps} />
+            <ErrorBoundary>
+              <Component {...pageProps} />
+            </ErrorBoundary>
           </IsSearchingProvider>
         </RaceEventsProvider>
       </RaceListProvider>

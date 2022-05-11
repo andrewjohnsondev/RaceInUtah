@@ -19,14 +19,18 @@ const useTermFetch = (term) => {
         ...raceEvents.map((raceEvent) =>
           fetchByEvent(raceEvent, false, { name: term })
         ),
-      ]).then((res) => {
-        let results = new Set();
-        res.forEach((result) =>
-          result.data.races.forEach((race) => results.add(race))
-        );
+      ])
+        .then((res) => {
+          let results = new Set();
+          res.forEach((result) =>
+            result.data.races.forEach((race) => results.add(race))
+          );
 
-        setRaces(removeEventDuplicates([...results]));
-      });
+          setRaces(removeEventDuplicates([...results]));
+        })
+        .catch((err) => {
+          setError(true);
+        });
     },
     500,
     { leading: true }

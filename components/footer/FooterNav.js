@@ -8,32 +8,32 @@ function FooterNav() {
       <ul className="grid grid-cols-2 gap-8 md:grid-cols-3">
         <li>
           <Link href="/events/running/all">
-            <a className="text-blueGrey-400">Running</a>
+            <a className="text-blueGrey-300">Running</a>
           </Link>
         </li>
         <li>
           <Link href="/events/biking/all">
-            <a className="text-blueGrey-400">Biking</a>
+            <a className="text-blueGrey-300">Biking</a>
           </Link>
         </li>
         <li>
           <Link href="/events/triathlon">
-            <a className="text-blueGrey-400">Triathlon</a>
+            <a className="text-blueGrey-300">Triathlon</a>
           </Link>
         </li>
         <li>
           <Link href="/events/duathlon">
-            <a className="text-blueGrey-400">Duathlon</a>
+            <a className="text-blueGrey-300">Duathlon</a>
           </Link>
         </li>
         <li>
           <Link href="/events/wheelchair">
-            <a className="text-blueGrey-400">Wheelchair</a>
+            <a className="text-blueGrey-300">Wheelchair</a>
           </Link>
         </li>
         <li>
           <Link href="/calendar">
-            <a className="text-blueGrey-400">Calendar</a>
+            <a className="text-blueGrey-300">Calendar</a>
           </Link>
         </li>
       </ul>
