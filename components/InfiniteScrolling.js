@@ -9,7 +9,7 @@ import { RaceListContext } from './providers/RaceListProvider';
 function InfiniteScrolling({ renderUI }) {
   const [isSearching, setIsSearching] = useContext(IsSearchingContext);
   const [raceList, setRaceList] = useContext(RaceListContext);
-  const [fetchData, hasMore] = useFetchPaginationData();
+  const [fetchData, hasMore] = useFetchPaginationData(raceList.length);
 
   return (
     <ul>
