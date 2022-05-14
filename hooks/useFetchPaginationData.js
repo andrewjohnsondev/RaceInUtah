@@ -19,7 +19,7 @@ const useFetchPaginationData = () => {
       const res = await axios.post('https://raceinutah.com/api/races', {
         data: {
           page: pageNumber,
-          eventTypes: 'raceEvents',
+          eventTypes: raceEvents,
           requestNumber: REQUEST_NUMBER,
         },
       });
