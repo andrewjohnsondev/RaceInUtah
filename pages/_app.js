@@ -10,6 +10,7 @@ import RaceListProvider from '../components/providers/RaceListProvider';
 import RaceEventsProvider from '../components/providers/RaceEventsProvider';
 import ErrorBoundary from '../components/ErrorBoundary';
 import Head from 'next/head';
+import Toast from '../components/Toast';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }) {
           </IsSearchingProvider>
         </RaceEventsProvider>
       </RaceListProvider>
+      <Toast message="something bad happened" />
       <Footer />
     </>
   );

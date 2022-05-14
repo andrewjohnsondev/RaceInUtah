@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react';
+import axios from 'axios';
 
 import { sortEventsByDate, removeEventDuplicates } from '../helpers/array';
 import { REQUEST_NUMBER } from '../api/types';
-import { fetchForMultipleEvents } from '../api/apiMethods';
 import { RaceListContext } from '../components/providers/RaceListProvider';
 import { RaceEventsContext } from '../components/providers/RaceEventsProvider';
+import { toast } from 'react-toastify';
 
 const useFetchPaginationData = () => {
   const [raceEvents, setRaceEvents] = useContext(RaceEventsContext);
@@ -14,15 +15,28 @@ const useFetchPaginationData = () => {
   const [hasMore, setHasMore] = useState(true);
 
   const fetchData = async (event_type) => {
-    const races = await fetchForMultipleEvents(raceEvents, false, {
-      page: pageNumber,
-    });
-    if (races.length < REQUEST_NUMBER) setHasMore(false);
-    setRaceList((prevList) =>
-      sortEventsByDate(removeEventDuplicates([...prevList, ...races]))
-    );
-    setPageNumber((prevPage) => prevPage + 1);
+    try {
+      const res = await axios.post('https://raceinutah.com/api/races', {
+        data: {
+          page: pageNumber,
+          eventTypes: 'raceEvents',
+          requestNumber: REQUEST_NUMBER,
+        },
+      });
+      const races = res.data;
+      console.log(races);
+      if (races.length < REQUEST_NUMBER) setHasMore(false);
+      setRaceList((prevList) =>
+        sortEventsByDate(removeEventDuplicates([...prevList, ...races]))
+      );
+      setPageNumber((prevPage) => prevPage + 1);
+    } catch (err) {
+      toast.error(err.message, {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    }
   };
+
   return [fetchData, hasMore];
 };
 
