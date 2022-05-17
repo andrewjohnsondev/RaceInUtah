@@ -25,7 +25,7 @@ function Home() {
           </section>
         </div>
 
-        <div className="background-image"></div>
+        {/* <div className="background-image"></div> */}
       </main>
     </>
   );

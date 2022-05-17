@@ -28,7 +28,6 @@ const useFetchPaginationData = (raceListLength) => {
         },
       });
       const races = res.data;
-      console.log(races);
       if (races.length < +REQUEST_NUMBER) setHasMore(false);
       setRaceList((prevList) =>
         sortEventsByDate(removeEventDuplicates([...prevList, ...races]))

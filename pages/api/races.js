@@ -4,10 +4,11 @@ import { removeEventDuplicates } from '../../helpers/array';
 
 export default async (req, res) => {
   const eventTypes = req.body.data.eventTypes;
+  const options = req.body.data.options;
   const page = req.body.data.page;
   const requestNumber = req.body.data.requestNumber;
 
-  const fetchByEvent = async (type, page) => {
+  const fetchByEvent = async (type, page, options = {}) => {
     const res = await axios.get('https://runsignup.com/rest/races', {
       params: {
         state: 'UT',
@@ -22,6 +23,7 @@ export default async (req, res) => {
         page: page,
         event_type: type,
         results_per_page: requestNumber,
+        ...options,
       },
     });
 
@@ -30,9 +32,11 @@ export default async (req, res) => {
 
   try {
     const dataList = await Promise.all(
-      eventTypes.map((eventType) => fetchByEvent(eventType, page))
+      eventTypes.map((eventType) => fetchByEvent(eventType, page, options))
     );
+
     let races = [];
+
     dataList.forEach(({ data }) => (races = [...races, ...data.races]));
 
     res.send(sortEventsByDate(removeEventDuplicates(races)));

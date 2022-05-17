@@ -2,12 +2,13 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Button from './Button';
 import Fieldset from './Fieldset';
 import { RaceListContext } from './providers/RaceListProvider';
 import { RaceEventsContext } from './providers/RaceEventsProvider';
-import { fetchByEventAndDistance } from '../api/apiMethods';
+import { REQUEST_NUMBER } from '../api/types';
 
 function Filter({ events, distances }) {
   const [raceList, setRaceList] = useContext(RaceListContext);
@@ -60,13 +61,32 @@ function Filter({ events, distances }) {
     }
   };
 
-  const onSubmit = async (filterValues) => {
-    if (!filterValues.eventTypes) {
-      filterValues.eventTypes = raceEvents.join(',');
+  const onSubmit = async ({ eventTypes, minDistance }) => {
+    if (!eventTypes) {
+      eventTypes = raceEvents;
     }
-    const races = await fetchByEventAndDistance(filterValues);
-    setRaceList(races);
-    setRaceEvents(filterValues.eventTypes.split(','));
+    if (eventTypes) {
+      eventTypes = eventTypes.split(',');
+    }
+    let options;
+    if (minDistance === 0 || !minDistance) {
+      options = {};
+    }
+    options = {
+      min_distance: minDistance,
+    };
+
+    const races = await axios.post('https://raceinutah.com/api/races', {
+      data: {
+        page: 1,
+        eventTypes,
+        requestNumber: REQUEST_NUMBER,
+        options,
+      },
+    });
+
+    setRaceList(races.data);
+    setRaceEvents(eventTypes);
     setIsModalOpen(false);
   };
 

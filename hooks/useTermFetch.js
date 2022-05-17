@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { useDebouncedCallback } from 'use-debounce';
 import { removeEventDuplicates } from '../helpers/array';
 import { RaceEventsContext } from '../components/providers/RaceEventsProvider';
+import axios from 'axios';
+import { REQUEST_NUMBER } from '../api/types';
 
 import { fetchByEvent } from '../api/apiMethods';
+import { toast } from 'react-toastify';
 
 const useTermFetch = (term) => {
   const [raceEvents, setRaceEvents] = useContext(RaceEventsContext);
@@ -14,22 +17,45 @@ const useTermFetch = (term) => {
     (value) => {
       Promise.all([
         ...raceEvents.map((raceEvent) =>
-          fetchByEvent(raceEvent, false, { city: term })
+          axios.post('https://raceinutah.com/api/races', {
+            data: {
+              page: 1,
+              eventTypes: [raceEvent],
+              requestNumber: REQUEST_NUMBER,
+              options: {
+                city: term,
+              },
+            },
+          })
         ),
-        ...raceEvents.map((raceEvent) =>
-          fetchByEvent(raceEvent, false, { name: term })
-        ),
+        ...raceEvents.map((raceEvent) => {
+          return axios.post('https://raceinutah.com/api/races', {
+            data: {
+              page: 1,
+              eventTypes: [raceEvent],
+              requestNumber: REQUEST_NUMBER,
+              options: {
+                name: term,
+              },
+            },
+          });
+        }),
       ])
         .then((res) => {
+          const races = res.filter((race) => race.data.length >= 1);
+
           let results = new Set();
-          res.forEach((result) =>
-            result.data.races.forEach((race) => results.add(race))
+
+          races.forEach(({ data }) =>
+            data.forEach((race) => results.add(race))
           );
 
           setRaces(removeEventDuplicates([...results]));
         })
         .catch((err) => {
-          setError(true);
+          toast.error(err.message, {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
         });
     },
     500,
