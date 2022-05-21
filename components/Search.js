@@ -5,7 +5,10 @@ import useTermFetch from '../hooks/useTermFetch';
 import { IsSearchingContext } from './providers/IsSearchingProvider';
 import { RaceListContext } from './providers/RaceListProvider';
 import { RaceEventsContext } from './providers/RaceEventsProvider';
-import { fetchForMultipleEvents } from '../api/apiMethods';
+import {
+  fetchForMultipleEvents,
+  fetchForMultipleEventsClientSide,
+} from '../api/apiMethods';
 
 function Search({ eventTypes }) {
   const [term, setTerm] = useState('');
@@ -20,9 +23,9 @@ function Search({ eventTypes }) {
       setIsSearching(false);
     }
     if (!term && touched.current) {
-      fetchForMultipleEvents(raceEvents).then((res) => {
-        setRaceList(res);
-      });
+      fetchForMultipleEventsClientSide({ pageNumber: 1, raceEvents }).then(
+        (res) => setRaceList(res)
+      );
     }
 
     if (term) {
@@ -34,6 +37,7 @@ function Search({ eventTypes }) {
         return name.startsWith(searchTerm) || city.startsWith(searchTerm);
       });
       setIsSearching(true);
+      console.log(filteredByTerm);
       setRaceList(filteredByTerm);
     }
   }, [term, races]);

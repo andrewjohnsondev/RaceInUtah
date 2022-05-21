@@ -1,6 +1,7 @@
 import api from './index';
 import { removeEventDuplicates, sortEventsByDate } from '../helpers/array';
 import { REQUEST_NUMBER } from './types';
+import axios from 'axios';
 
 export const fetchById = (id) => {
   return api.get('https://runsignup.com/rest/race', {
@@ -67,5 +68,20 @@ export const fetchByEventAndDistance = async ({ eventTypes, minDistance }) => {
   const races = await fetchForMultipleEvents(events, false, {
     min_distance: minDistance,
   });
+  return races;
+};
+
+export const fetchForMultipleEventsClientSide = async ({
+  pageNumber,
+  raceEvents,
+}) => {
+  const res = await axios.post('https://raceinutah.com/api/races', {
+    data: {
+      page: pageNumber,
+      eventTypes: raceEvents,
+      requestNumber: REQUEST_NUMBER,
+    },
+  });
+  const races = res.data;
   return races;
 };
