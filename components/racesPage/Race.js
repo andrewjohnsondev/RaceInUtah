@@ -23,8 +23,8 @@ function Race({ race }) {
   return (
     <Link href={`/events/race/${race.race_id}`}>
       <a className="group cursor-pointer bg-white text-center">
-        <div className="grid grid-cols-1 items-center rounded-t bg-blueGrey-200 sm:grid-cols-[2fr_1.5fr]">
-          <time className="px-2 py-4 text-sm text-blueGrey-900 md:justify-self-start md:px-10 md:text-lg">
+        <div className="grid grid-cols-1 items-center rounded-t bg-darkPrimary sm:grid-cols-[2fr_1.5fr] sm:bg-blueGrey-200">
+          <time className="px-2 py-4 text-sm text-white sm:text-blueGrey-900 md:justify-self-start md:px-10 md:text-lg">
             {formatDates(race.next_date, race.next_end_date)}
           </time>
           <div className="event-shape bg-pattern-primary flex hidden h-full items-center justify-center gap-2 rounded-tr px-2 py-4 sm:block  md:pl-12">
