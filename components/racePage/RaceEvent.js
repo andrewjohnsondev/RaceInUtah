@@ -22,7 +22,7 @@ function RaceEvent({ event, race }) {
     <a
       href={race.url}
       target="_blank"
-      className="grid grid-rows-[3rem,_1fr] justify-between rounded text-center md:grid-rows-[4rem,_1fr]"
+      className="grid w-full grid-cols-1 grid-rows-[3rem,_1fr] justify-between rounded text-center md:grid-rows-[4rem,_1fr]"
     >
       <p className="bg-pattern-primary grid place-content-center rounded-t text-white">
         {checkEventType(event.event_type)}

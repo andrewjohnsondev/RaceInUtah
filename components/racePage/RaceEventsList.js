@@ -3,7 +3,7 @@ import RaceEvent from './RaceEvent';
 function RaceEventsList({ race }) {
   const renderEvents = () =>
     race.events.map((e) => (
-      <li className="group flex" key={e.event_id}>
+      <li className="group flex w-full" key={e.event_id}>
         <RaceEvent race={race} event={e} />
       </li>
     ));
