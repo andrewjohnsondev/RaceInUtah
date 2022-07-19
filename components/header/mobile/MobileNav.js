@@ -19,11 +19,6 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
     mobileNavRef
   );
 
-  useEffect(() => {
-    return () => {
-      setIsMobileNavOpen(false);
-    };
-  }, [pathname]);
   return (
     <div
       ref={mobileNavRef}
@@ -60,7 +55,7 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
           </h3>
         </div>
       </div>
-      <div className=" mt-auto bg-blueGrey-100">
+      <div className=" mt-auto mt-1 bg-blueGrey-100">
         <div className="mx-auto flex max-w-md justify-between px-10 py-8 text-xl font-bold">
           <Link href="/calendar">Calendar</Link>
           <h2>Create Race</h2>

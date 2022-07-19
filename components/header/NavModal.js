@@ -11,12 +11,6 @@ function NavModal({ isSubMenuOpen, setIsSubMenuOpen }) {
 
   const { init, open, close } = useNavigationModal(isSubMenuOpen, modalRef);
 
-  useEffect(() => {
-    return () => {
-      setIsSubMenuOpen(false);
-    };
-  }, [pathname]);
-
   return (
     <ul
       ref={modalRef}

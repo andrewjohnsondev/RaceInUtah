@@ -22,12 +22,12 @@ function RaceEvent({ event, race }) {
     <a
       href={race.url}
       target="_blank"
-      className="h-full cursor-pointer rounded text-center"
+      className="grid grid-rows-[3rem,_1fr] justify-between rounded text-center md:grid-rows-[4rem,_1fr]"
     >
-      <p className="bg-pattern-primary rounded-t py-3 text-white">
+      <p className="bg-pattern-primary grid place-content-center rounded-t text-white">
         {checkEventType(event.event_type)}
       </p>
-      <div className="flex h-[80%] flex-col justify-between gap-8 rounded-b bg-white p-8 shadow-lg shadow-blueGrey-400/20 transition-colors group-hover:bg-primary group-hover:text-white">
+      <div className="flex flex-col justify-between gap-8 rounded-b bg-white p-8 shadow-lg shadow-blueGrey-400/20 transition-colors group-hover:bg-primary group-hover:text-white">
         <h3 className="text-xl text-blueGrey-700 transition-colors group-hover:text-white md:text-2xl">
           {event.name}
         </h3>
