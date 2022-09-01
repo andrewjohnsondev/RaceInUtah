@@ -37,7 +37,6 @@ function Search({ eventTypes }) {
         return name.startsWith(searchTerm) || city.startsWith(searchTerm);
       });
       setIsSearching(true);
-      console.log(filteredByTerm);
       setRaceList(filteredByTerm);
     }
   }, [term, races]);
