@@ -20,6 +20,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-0TC0H4373M"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || []; function gtag()
+          {dataLayer.push(arguments)}
+          gtag('js', new Date()); gtag('config', 'G-0TC0H4373M');
+        </script>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
