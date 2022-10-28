@@ -23,8 +23,8 @@ function Race({ race }) {
   return (
     <Link href={`/events/race/${race.race_id}`}>
       <a className="group cursor-pointer bg-white text-center">
-        <div className="grid grid-cols-1 items-center rounded-t bg-darkPrimary sm:grid-cols-[2fr_1.5fr] sm:bg-blueGrey-200">
-          <time className="px-2 py-4 text-sm text-white sm:text-blueGrey-900 md:justify-self-start md:px-10 md:text-lg">
+        <div className="grid grid-cols-1 items-center rounded-t bg-darkPrimary group-hover:bg-blueGrey-300 sm:grid-cols-[2fr_1.5fr] sm:bg-blueGrey-200">
+          <time className="px-2 py-4 text-sm text-white  sm:text-blueGrey-900 md:justify-self-start md:px-10 md:text-lg">
             {formatDates(race.next_date, race.next_end_date)}
           </time>
           <div className="event-shape bg-pattern-primary flex hidden h-full items-center justify-center gap-2 rounded-tr px-2 py-4 sm:block  md:pl-12">
@@ -33,7 +33,7 @@ function Race({ race }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-6 rounded-b bg-white py-8 px-4 transition-colors group-hover:bg-primary group-hover:text-white md:flex-row md:justify-between md:px-10 md:py-12 md:text-left">
+        <div className="flex flex-col gap-6 rounded-b bg-white py-8 px-4 transition-colors   md:flex-row md:justify-between md:px-10 md:py-12 md:text-left">
           <div className="md:space-y-4">
             <h3 className="max-w-md text-xl font-bold md:text-2xl">
               {race.name}

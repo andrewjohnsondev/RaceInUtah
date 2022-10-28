@@ -103,7 +103,7 @@ export const getStaticProps = async (context) => {
   const affiliateURL = `${
     data.race.url
   }?aflt_token=${'CeeJI0St2tMa5ZXt4U8XiX3yX839NeoD'}`;
-  const race = { ...data.race, url: affiliateURL };
+  const race = { ...data.race };
   return {
     props: {
       race: race,
