@@ -34,10 +34,10 @@ function RaceEventsPage({
     <Section className="bg-pattern">
       <div className="wrapper space-y-12 md:space-y-20">
         <SectionTitle title={title} />
-        <div className="flex items-end justify-between gap-3">
+        {/* <div className="flex items-end justify-between gap-3">
           <Search />
           {renderFilter()}
-        </div>
+        </div> */}
         <RaceList />
       </div>
     </Section>

@@ -22,14 +22,14 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
   return (
     <div
       ref={mobileNavRef}
-      className={`${init} ${open} ${close} absolute top-4 right-3 z-[9999]  min-h-[65vh] w-[95%] rounded bg-white shadow-xl shadow-blueGrey-400/50 transition-all duration-1000 md:hidden`}
+      className={`${init} ${open} ${close} absolute top-4 right-3 z-[9999] flex min-h-[65vh] w-[95%] flex-col  items-stretch justify-between rounded bg-white shadow-xl shadow-blueGrey-400/50 transition-all duration-1000 md:hidden`}
     >
-      <h2 className="mx-auto max-w-md border border-b-2 border-transparent border-b-blueGrey-900/10 px-10 py-8 text-left hover:text-blueGrey-700">
+      <h2 className="max-full mx-auto border border-b-2 border-transparent border-b-blueGrey-900/10 px-10 py-8 text-left hover:text-blueGrey-700">
         <Link href="/">
           <a className="text-xl font-bold">Events</a>
         </Link>
       </h2>
-      <div className="mx-auto max-w-md">
+      <div className="mx-auto w-full">
         <div className=" grid grid-cols-[min-content_min-content] justify-between gap-6  bg-white px-10 py-8 text-left text-lg font-semibold text-blueGrey-700">
           <div className="space-y-4">
             <h3 className="hover:text-blueGrey-600">
@@ -55,10 +55,14 @@ function MobileNav({ isMobileNavOpen, setIsMobileNavOpen }) {
           </h3>
         </div>
       </div>
-      <div className=" mt-auto mt-1 bg-blueGrey-100">
+      <div className=" mt-auto bg-blueGrey-100">
         <div className="mx-auto flex max-w-md justify-between px-10 py-8 text-xl font-bold">
           <Link href="/calendar">Calendar</Link>
-          <h2>Create Race</h2>
+          <h2>
+            <a href="https://runsignup.com/Race/New" target="_blank">
+              Create Race
+            </a>
+          </h2>
         </div>
       </div>
     </div>
